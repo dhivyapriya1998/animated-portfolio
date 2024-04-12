@@ -25,3 +25,7 @@ section {
   height           : 100vh;
   scroll-snap-align: center;
 }
+
+.experience-section {
+  height: 180vh !important; /* or any other value you want */
+}

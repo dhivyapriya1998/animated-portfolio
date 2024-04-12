@@ -1,0 +1,134 @@
+    .skill-bar {
+      height          : 10px;
+      border-radius   : 10px;
+      background-color: #4C177D;
+      animation       : skill-bar-animation 1s ease-in-out;
+    }
+
+    @keyframes skill-bar-animation {
+      from {
+        width: 0;
+      }
+    }
+
+    @keyframes animationDot {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(calc(3.6deg * var(--num)));
+
+      }
+    }
+
+    .content-container {
+      position       : relative;
+      display        : flex;
+      justify-content: center;
+      align-items    : center;
+      flex-wrap      : wrap;
+      gap            : 20px;
+    }
+
+    .content-container {
+      & .card {
+        position       : relative;
+        width          : 340px;
+        height         : 250px;
+        background     : #2a2a2a;
+        border-radius  : 5px;
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+        margin-top: 2em;
+
+        & .percent {
+          position: relative;
+          height  : 150px;
+          width   : 150px;
+
+          & .dot {
+            position: absolute;
+            inset   : 15px;
+            z-index : 10;
+
+            transform: rotate(calc(3.6deg * var(--num)));
+            animation: animationDot 2s linear forwards infinite;
+
+            & ::before {
+              position     : absolute;
+              content      : '';
+              top          : -5px;
+              left         : 50%;
+              color        : var(--clr);
+              width        : 10px;
+              height       : 10px;
+              border-radius: 50%;
+              background   : var(--clr);
+              transform    : translateX(-50%);
+              box-shadow   : 0 0 10px var(--clr), 0 0 30px var(--clr);
+            }
+          }
+
+          & .number {
+            position       : absolute;
+            inset          : 0;
+            display        : flex;
+            justify-content: center;
+            align-items    : center;
+            flex-direction : column;
+
+            & h2 {
+              display        : flex;
+              justify-content: center;
+              align-items    : center;
+              color          : #fff;
+              font-weight    : 700;
+              font-size      : 2.5em;
+              margin         : 0px
+            }
+
+            & span {
+              margin: 0px;
+            }
+
+            & p {
+              margin: 0px;
+            }
+          }
+
+          & svg {
+            position : relative;
+            height   : 150px;
+            width    : 150px;
+            transform: rotate(270deg);
+
+            & circle {
+              width       : 100%;
+              height      : 100%;
+              fill        : transparent;
+              stroke-width: 10;
+              stroke      : gray;
+              transform   : translate(5px, 5px);
+
+              &:nth-child(2n) {
+                // styles for odd child elements
+                stroke           : var(--clr);
+                stroke-dasharray : 440;
+                stroke-dashoffset: calc(440 - (440 * var(--num))/100);
+
+              }
+
+            }
+
+          }
+        }
+      }
+    }
+
+    // .container .card .particle svg circle :nth-child(2){
+    //     stroke:red;
+    //     stroke-dasharray: 440;
+    //     stroke-dashoffset: 22
+    // }
